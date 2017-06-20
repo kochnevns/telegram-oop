@@ -1,30 +1,27 @@
 'use strict';
 
-const TelegramBot = require('node-telegram-bot-api');
+const TelegramBot = require('./../node-telegram-bot-api/src/telegram');
 
-module.exports = {
-    TelegramBotBase: class TelegramBotBase {
-        constructor(token) {
-            let self = this;
+class TelegramBotOOP extends TelegramBot{
 
-            self.bot = new TelegramBot(token, { polling: true });
-            self.bot.on('location', self.onLocation.bind(self));
-            self.bot.on('callback_query', self.onCallbackQuery.bind(self));
-        }
-        onLocation() {
-            throw new Error('Функция на локейшн не назначена');
-        }
-        onCallbackQuery() {
-            throw new Error('Функция на калбек квери не назначена');
-        }
-        getUserName(msg) {
-            return `@${msg.from.first_name} ${msg.from.last_name}`;
-        }
-        registerOnTextCallback(regexp, cb) {
-            this.bot.onText(regexp, cb);
-        }
-        getBotInstance() {
-            return this.bot;
-        }
+    constructor(token) {
+        super(token, {polling: true});
+        this.on('location', this.onLocation.bind(this));
+        this.on('callback_query', this.onCallbackQuery.bind(this));
     }
-};
+    onLocation() {
+        throw new Error('Функция на локейшн не назначена');
+    }
+    onCallbackQuery() {
+        throw new Error('Функция на калбек квери не назначена');
+    }
+    getUserName(msg) {
+        return;
+    }
+    registerOnTextCallback(regexp, cb) {
+      console.log(cb)
+        this.onText(regexp, cb);
+    }
+}
+
+module.exports = TelegramBotOOP;
