@@ -16,10 +16,9 @@ class TelegramBotOOP extends TelegramBot{
         throw new Error('Функция на калбек квери не назначена');
     }
     getUserName(msg) {
-        return;
+        return `${msg.from.first_name} ${msg.from.last_name || 'Бесфамильный'}`;
     }
     registerOnTextCallback(regexp, cb) {
-      console.log(cb)
         this.onText(regexp, cb);
     }
 }
