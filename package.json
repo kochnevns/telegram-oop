@@ -1,6 +1,6 @@
 {
   "name": "telegram-bot-oop-way",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "oop wrap on another telegram api package",
   "main": "index.js",
   "scripts": {
